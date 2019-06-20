@@ -16,3 +16,7 @@ Route::group(['namespace' => 'Website'], function () {
 	Route::get('/pelanggan','Pelanggan\PelangganController@index')->name('pelanggan.index');
 	Route::get('/pustakawan','Pustakawan\PustakawanController@index')->name('pustakawan.index');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
