@@ -18,6 +18,8 @@ class CreateBooksTable extends Migration
             $table->timestamps();
 			$table->string('judul',50);
 			$table->string('pengarang',50);
+			$table->string('coverurl',200);
+			$table->string('fileurl',200);
         });
     }
 
