@@ -6,22 +6,29 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
+
                 <div class="card-body">
-                    Books
-					<a class="btn btn-info" href= "{{ route('admin.book.create') }}">Tambah</a>
+                    Buku
 					<br>
 					<table class="table table-striped table-dark">
 						<tr>
 							<th>Judul</th>
 							<th>Pengarang</th>
+							<th></th>
+							<th></th>
 						</tr>
-						@foreach($books as $book)
 						<tr>
-							<td>{{ $book->judul }}</td>
-							<td>{{ $book->pengarang }}</td>
-							<td><a class="btn btn-info" href= "{{ route('admin.book.show', $book->id) }}">Lihat</a></td>
+							<td>{{ $model->judul }}</td>
+							<td>{{ $model->pengarang }}</td>
+							<td><a class="btn btn-info" href= "{{ route('admin.book.edit', $model->id) }}">Ubah</a></td>
+							<td>
+								<form action="{{ route('admin.book.destroy', $model->id) }}" method="post">
+									{{ csrf_field() }}
+									{{ method_field('delete') }}
+									<button class="btn btn-info">Hapus</button>
+								</form>
+							</td>
 						</tr>
-						@endforeach
 					</table>
                 </div>
             </div>

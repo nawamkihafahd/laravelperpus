@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class BookController extends Controller
 {
+    protected $book;
+	
+	public function __construct()
+    {
+        $this->book = new Book();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +34,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.book.create');
     }
 
     /**
@@ -38,7 +45,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+			'required' => ':Atribut Wajib Diisi',
+			'min' => ':attribute harus diisi minimal :min karakter!',
+			'max' => ':attribute Wajib Diisi maximal :max karakter!'
+		];
         //
+		$this->validate($request,[
+			'judul' => 'required|max:50',
+			'pengarang' => 'required|max:50'
+		], $messages);
+		
+		$this->book->create($request->all());
+		return redirect()->route('admin.book.index');
     }
 
     /**
@@ -49,7 +68,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('admin.book.show', ['model' => $book]);
     }
 
     /**
@@ -60,7 +79,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('admin.book.edit', ['model' => $book]);
     }
 
     /**
@@ -72,7 +91,19 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $messages = [
+			'required' => ':Atribut Wajib Diisi',
+			'min' => ':attribute harus diisi minimal :min karakter!',
+			'max' => ':attribute Wajib Diisi maximal :max karakter!'
+		];
         //
+		$this->validate($request,[
+			'judul' => 'required|max:50',
+			'pengarang' => 'required|max:50'
+		], $messages);
+		
+		$book->update($request->all());
+		return view('admin.book.show', ['model' => $book]);
     }
 
     /**
@@ -83,6 +114,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+		return redirect()->route('admin.book.index');
     }
 }
