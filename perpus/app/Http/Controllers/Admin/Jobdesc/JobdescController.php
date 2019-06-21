@@ -1,31 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Pustakawan;
+namespace App\Http\Controllers\Admin\Jobdesc;
 
-use App\Models\Pustakawan;
 use App\Models\Jobdesc;
+use App\Models\Pustakawan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PustakawanController extends Controller
+class JobdescController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-	protected $pustakawan;
+	protected $jobdesc;
 	
 	public function __construct()
     {
-        $this->pustakawan = new Pustakawan();
+        $this->jobdesc = new Jobdesc();
     }
 	
     public function index()
     {
         //
-		$data['pustakawans'] = Pustakawan::latest()->get();
-		return view('admin.pustakawan.index', $data);
+		$data['jobdescs'] = Jobdesc::latest()->get();
+		return view('admin.jobdesc.index', $data);
     }
 
     /**
@@ -36,7 +36,7 @@ class PustakawanController extends Controller
     public function create()
     {
         //
-		return view('admin.pustakawan.create');
+		return view('admin.jobdesc.create');
     }
 
     /**
@@ -55,54 +55,50 @@ class PustakawanController extends Controller
 		];
         //
 		$this->validate($request,[
-			'nama' => 'required',
-			'alamat' => 'required',
-			'notelp' => 'required',
-			'jobdesc_id' => 'required'
+			'salary' => 'required',
+			'name' => 'required',
 		], $messages);
 		
-		$jobdesc = Jobdesc::find($request->jobdesc_id);
-		if($jobdesc)
-		{
-			$this->pustakawan->create($request->all());
-			return redirect()->route('admin.pustakawan.index');
-		}
-		return redirect()->route('admin.pustakawan.create');
-		
+		$this->jobdesc->create($request->all());
+		return redirect()->route('admin.jobdesc.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pustakawan  $pustakawan
+     * @param  \App\Models\Jobdesc  $jobdesc
      * @return \Illuminate\Http\Response
      */
-    public function show(Pustakawan $pustakawan)
+    public function show(Jobdesc $jobdesc)
     {
         //
-		return view('admin.pustakawan.show', ['model' => $pustakawan]);
+		//$pustakawans = Jobdesc::find($jobdesc->id)->pustakawans;
+		//$data['model'] = $jobdesc;
+		//$data['pustakawans'] = $pustakawans;
+		return view('admin.jobdesc.show', ['model' => $jobdesc]);
+		//return view('admin.jobdesc.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pustakawan  $pustakawan
+     * @param  \App\Models\Jobdesc  $jobdesc
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pustakawan $pustakawan)
+    public function edit(Jobdesc $jobdesc)
     {
         //
-		return view('admin.pustakawan.edit', ['model' => $pustakawan]);
+		return view('admin.jobdesc.edit', ['model' => $jobdesc]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pustakawan  $pustakawan
+     * @param  \App\Models\Jobdesc  $jobdesc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pustakawan $pustakawan)
+    public function update(Request $request, Jobdesc $jobdesc)
     {
         //
 		$messages = [
@@ -112,33 +108,25 @@ class PustakawanController extends Controller
 		];
         //
 		$this->validate($request,[
-			'nama' => 'required',
-			'alamat' => 'required',
-			'notelp' => 'required',
-			'jobdesc_id' => 'required'
+			'salary' => 'required',
+			'name' => 'required',
 		], $messages);
 		
-		$jobdesc = Jobdesc::find($request->jobdesc_id);
-		if($jobdesc)
-		{
-			$pustakawan->update($request->all());
-			return view('admin.pustakawan.show', ['model' => $pustakawan]);
-		}
-		return redirect()->route('admin.pustakawan.create');
-		
-		
+		$jobdesc->update($request->all());
+		return view('admin.jobdesc.show', ['model' => $jobdesc]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pustakawan  $pustakawan
+     * @param  \App\Models\Jobdesc  $jobdesc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pustakawan $pustakawan)
+    public function destroy(Jobdesc $jobdesc)
     {
         //
-		$pustakawan->delete();
-		return redirect()->route('admin.pustakawan.index');
+		//Pustakawan::where('jobdesc_id', $jobdesc->id)->update(['jobdesc_id' =>1])
+		$jobdesc->delete();
+		return redirect()->route('admin.jobdesc.index');
     }
 }

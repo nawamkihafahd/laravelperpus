@@ -14,11 +14,12 @@ Route::group(['prefix' => 'admin-panel', 'namespace' => 'Admin', 'as' => 'admin.
 	Route::get('/login','Auth\LoginController@index')->name('auth.index');
 	Route::post('login','Auth\LoginController@store')->name('auth.process');
 	Route::get('/logout','Auth\LogoutController@index')->name('auth.logout');
-	Route::group(['middleware'=> 'admin.auth'] , function (){
+	Route::group(['middleware'=> ['admin.auth', 'admin.globalvariable']] , function (){
 		Route::get('/','Home\HomeController@index')->name('landing.index');
 		Route::resource('book','Book\BookController');
 		Route::resource('pelanggan','Pelanggan\PelangganController');
 		Route::resource('pustakawan','Pustakawan\PustakawanController');
+		Route::resource('jobdesc','Jobdesc\JobdescController');
 	});
 	
 });

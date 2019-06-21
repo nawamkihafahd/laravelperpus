@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTable extends Migration
+class CreateJobdescsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('jobdescs', function (Blueprint $table) {
             $table->bigIncrements('id');
+			$table->integer('salary');
+			$table->string('name');
             $table->timestamps();
-			$table->string('judul',50);
-			$table->string('pengarang',50);
-			$table->string('fileurl',200);
-			$table->string('coverurl',200);
         });
     }
 
@@ -30,6 +28,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('jobdescs');
     }
 }

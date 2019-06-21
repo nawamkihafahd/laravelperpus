@@ -17,6 +17,9 @@
 					<br>
 					<br>
 					<a class="btn btn-info" href="{{ route('admin.pustakawan.index')}}">Pustakawan</a>
+					<br>
+					<br>
+					<a class="btn btn-info" href="{{ route('admin.jobdesc.index')}}">Jenis Pekerjaan</a>
                 </div>
             </div>
         </div>
