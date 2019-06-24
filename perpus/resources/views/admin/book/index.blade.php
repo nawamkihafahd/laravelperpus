@@ -1,6 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -10,10 +11,11 @@
                     Books
 					<a class="btn btn-info" href= "{{ route('admin.book.create') }}">Tambah</a>
 					<br>
-					<table class="table table-striped table-dark">
+					<input type="text" id="searchInput" onkeyup="filterFunction()" placeholder="Cari Judul..">
+					<table id="datatable" class="table table-striped table-dark">
 						<tr>
 							<th>Judul</th>
-							<th>Pengarang</th>
+							<th colspan="3">Pengarang</th>
 						</tr>
 						@foreach($books as $book)
 						<tr>

@@ -10,7 +10,9 @@
                 <div class="card-body">
                     Pelanggan
 					<a class="btn btn-info" href= "{{ route('admin.pelanggan.create') }}">Tambah</a>
-					<table class="table table-striped table-dark">
+					<br>
+					<input type="text" id="searchInput" onkeyup="filterFunction()" placeholder="Cari Nama..">
+					<table id="datatable" class="table table-striped table-dark">
 						<tr>
 							<th>Nama</th>
 							<th>Alamat</th>

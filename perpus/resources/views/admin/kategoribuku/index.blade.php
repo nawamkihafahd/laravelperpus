@@ -10,7 +10,9 @@
                 <div class="card-body">
                     Kategori Buku
 					<a class="btn btn-info" href= "{{ route('admin.bookcategory.create') }}">Tambah</a>
-					<table class="table table-striped table-dark">
+					<br>
+					<input type="text" id="searchInput" onkeyup="filterFunction()" placeholder="Cari Kategori..">
+					<table id="datatable" class="table table-striped table-dark">
 						<tr>
 							<th>Nama Kategori</th>
 							<th></th>

@@ -10,7 +10,9 @@
                 <div class="card-body">
                     Jenis Pekerjaan
 					<a class="btn btn-info" href= "{{ route('admin.jobdesc.create') }}">Tambah</a>
-					<table class="table table-striped table-dark">
+					<br>
+					<input type="text" id="searchInput" onkeyup="filterFunction()" placeholder="Cari Pekerjaan..">
+					<table id="datatable" class="table table-striped table-dark">
 						<tr>
 							<th>Nama Pekerjaan</th>
 							<th>Gaji</th>
