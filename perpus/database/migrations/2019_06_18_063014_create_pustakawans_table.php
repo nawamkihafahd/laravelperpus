@@ -16,7 +16,7 @@ class CreatePustakawansTable extends Migration
         Schema::create('pustakawans', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('nama',50);
-			$table->string('alamat',50);
+			$table->string('alamat',200);
 			$table->string('notelp',15);
 			$table->bigInteger('jobdesc_id')->unsigned()->nullable();
             $table->timestamps();

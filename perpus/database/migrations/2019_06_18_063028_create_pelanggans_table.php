@@ -17,7 +17,7 @@ class CreatePelanggansTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 			$table->string('nama',50);
-			$table->string('alamat',50);
+			$table->string('alamat',200);
 			$table->string('notelp',15);
         });
     }
