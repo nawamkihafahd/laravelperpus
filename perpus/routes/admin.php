@@ -20,6 +20,9 @@ Route::group(['prefix' => 'admin-panel', 'namespace' => 'Admin', 'as' => 'admin.
 		Route::resource('pelanggan','Pelanggan\PelangganController');
 		Route::resource('pustakawan','Pustakawan\PustakawanController');
 		Route::resource('jobdesc','Jobdesc\JobdescController');
+		Route::resource('bookcategory','Bookcategory\BookCategoryController');
+		Route::post('book/addcategory','Book\BookController@addCategory')->name('book.addcategory');
+		Route::post('book/deletecategory','Book\BookController@destroyCategory')->name('book.destroycategory');
 	});
 	
 });

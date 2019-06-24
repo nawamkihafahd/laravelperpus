@@ -40,6 +40,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{{ route('admin.jobdesc.index') }}">Jenis Pekerjaan</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.bookcategory.index') }}">Kategori Buku</a>
+			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

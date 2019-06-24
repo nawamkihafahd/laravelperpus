@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Jobdesc;
+use App\Models\Bookcategory;
 use Closure;
 use Illuminate\Support\Facades\View;
 
@@ -18,6 +19,7 @@ class AdminGlobalVariable
     public function handle($request, Closure $next)
     {
 		$data['jobdescs'] = Jobdesc::all();
+		$data['bookcategories'] = Bookcategory::all();
 		View::share($data);
         return $next($request);
     }

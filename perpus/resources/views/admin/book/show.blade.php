@@ -34,6 +34,40 @@
 							</td>
 						</tr>
 					</table>
+					<br>
+					<table class="table table-striped table-dark">
+						<tr>
+							<th>Kategori Buku {{ $model->judul }}</th>
+							<th></th>
+							<th></th>
+						</tr>
+						
+						@foreach($model->bookcategories as $bookcategory)
+						<tr>
+							<td>{{ $bookcategory->nama }}</td>
+							<td>
+								<form action="{{ route('admin.book.destroycategory') }}" method="post">
+									{{ csrf_field() }}
+									<input type="hidden" name="id" value="{{ $model->id }}"></input>
+									<input type="hidden" name="categoryid" value="{{ $bookcategory->id }}"></input>
+									<button class="btn btn-info">Hapus kategori</button>
+								</form>
+							</td>
+							<td><a class="btn btn-info" href= "{{ route('admin.bookcategory.show', $bookcategory->id) }}">Lihat Kategori</a></td>
+						</tr>
+						@endforeach
+						
+					</table>
+					<form action="{{ route('admin.book.addcategory') }}" method="post">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{ $model->id }}">
+						<select class="form-control" id="jobdesc" name="categoryid"></input>
+							@foreach ($bookcategories as $bookcategory)
+								<option value="{{ $bookcategory->id }}">{{ $bookcategory->nama }}</option>
+							@endforeach
+						</select>
+						<button type="submit" class="btn btn-info">Tambah kategori</button>
+					</form>
                 </div>
             </div>
         </div>

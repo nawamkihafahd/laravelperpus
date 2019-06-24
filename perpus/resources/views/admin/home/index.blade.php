@@ -20,6 +20,9 @@
 					<br>
 					<br>
 					<a class="btn btn-info" href="{{ route('admin.jobdesc.index')}}">Jenis Pekerjaan</a>
+					<br>
+					<br>
+					<a class="btn btn-info" href="{{ route('admin.bookcategory.index')}}">kategori Buku</a>
                 </div>
             </div>
         </div>

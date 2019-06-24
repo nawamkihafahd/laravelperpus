@@ -22,4 +22,9 @@ class Book extends Model
             return "storage/$this->coverurl";
         }
     }
+	
+	public function bookcategories()
+	{
+		return $this->belongsToMany(Bookcategory::class, 'book_bookcategory', 'buku_id', 'category_id');
+	}
 }

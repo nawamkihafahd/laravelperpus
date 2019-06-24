@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Book;
 
 use App\Models\Book;
+use App\Models\Bookcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -147,5 +148,33 @@ class BookController extends Controller
         }
         $book->delete();
 		return redirect()->route('admin.book.index');
+    }
+	
+	public function addCategory(Request $request)
+    {
+		$messages = [
+			'required' => ':Atribut Wajib Diisi',
+			'min' => ':attribute harus diisi minimal :min karakter!',
+			'max' => ':attribute Wajib Diisi maximal :max karakter!'
+		];
+        //
+		$this->validate($request,[
+			'id' => 'required',
+			'categoryid' => 'required'
+		], $messages);
+		$book = Book::find($request->id);
+		$categories = [$request->categoryid];
+		if(! $book->bookcategories->contains($request->categoryid))
+		{
+			$book->bookcategories()->attach($categories);
+		}
+		return redirect()->route('admin.book.show', $request->id);
+    }
+	
+	public function destroyCategory(Request $request)
+    {
+        $book = Book::find($request->id);
+		$book->bookcategories()->detach($request->categoryid);
+		return redirect()->route('admin.book.show', $request->id);
     }
 }
