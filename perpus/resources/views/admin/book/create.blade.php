@@ -40,6 +40,15 @@
 							<input type="file" class="form-control" id="FileBuku" name="fileurl">
 						</div>
 						<br>
+						<div class="form-group">
+							<input type="hidden" name="id" value="null">
+							<select class="form-control" id="jobdesc" name="categoryid"></input>
+								@foreach ($bookcategories as $bookcategory)
+									<option value="{{ $bookcategory->id }}">{{ $bookcategory->nama }}</option>
+								@endforeach
+							</select>
+						</div>
+						<br>
 						<button type="submit" class="btn btn-primary">Tambah</input>
 					</form>
                 </div>
