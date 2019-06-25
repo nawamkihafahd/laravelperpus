@@ -19,7 +19,7 @@ class AdminGlobalVariable
     public function handle($request, Closure $next)
     {
 		$data['jobdescs'] = Jobdesc::all();
-		$data['bookcategories'] = Bookcategory::all();
+		$data['bookcategories'] = Bookcategory::all()->sortBy('nama');
 		View::share($data);
         return $next($request);
     }

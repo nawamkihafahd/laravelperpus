@@ -59,15 +59,16 @@ class BookController extends Controller
 			'coverurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'fileurl' => 'required|file|mimes:pdf',
             'id' => 'required',
-			'categoryid' => 'required',
 		], $messages);
+		//return $request->bookcategories;
+		$categoryids = $request->input('bookcategories');
 		$coverpath = $request->file('coverurl')->store('coverurls');
         $filepath = $request->file('fileurl')->store('fileurls');
         
 		$newid = $this->book->create($request->except('coverurl', 'fileurl') + ['coverurl' => $coverpath, 'fileurl' => $filepath])->id;
         $book = Book::find($newid);
 		$categories = [$request->categoryid];
-		$book->bookcategories()->attach($categories);
+		$book->bookcategories()->attach($categoryids);
 		//return $coverpath;
 		//$request->coverpath = $coverpath;
 		//$request->fielpath = $filepath;
